@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/dddplayer/markdown/parser"
+	"github.com/dddplayer/markdown/parser/entity"
 	"strings"
 )
 
@@ -10,7 +10,7 @@ type Paragraph struct {
 	Content []string
 }
 
-func NewParagraph(p parser.Parser, l parser.Line) (*Paragraph, error) {
+func NewParagraph(p entity.Parser, l entity.Line) (*Paragraph, error) {
 	pr, err := p.Parse(l)
 	if err != nil {
 		return nil, err
@@ -29,7 +29,7 @@ func NewParagraph(p parser.Parser, l parser.Line) (*Paragraph, error) {
 	return paragraph, err
 }
 
-func (p *Paragraph) Continue(line parser.Line) ParseState {
+func (p *Paragraph) Continue(line entity.Line) ParseState {
 	pr, err := p.BaseBlock.Parser.Parse(line)
 	if err != nil {
 		panic("parse paragraph block err")

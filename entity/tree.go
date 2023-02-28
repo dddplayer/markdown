@@ -1,6 +1,8 @@
 package entity
 
-import "github.com/dddplayer/markdown/datastructure"
+import (
+	"github.com/dddplayer/markdown/datastructure"
+)
 
 func NewTree() *tree {
 	return &tree{&datastructure.Tree{Root: NewNode().Node}}
@@ -27,15 +29,13 @@ func NewNode() *node {
 		Parent:     nil,
 		Next:       nil,
 	}
+	bb := &BaseBlock{state: Closed}
 	n := &node{
-		B:    nil,
+		B:    bb,
 		Node: dsn,
 	}
 	dsn.Val = n
+	bb.node = n
 
 	return n
-}
-
-func (n *node) AppendBlock(b Block) {
-	n.Node.AppendChild(b.Node().Node)
 }

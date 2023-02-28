@@ -5,11 +5,11 @@ import (
 	"github.com/dddplayer/markdown/parser/valueobject"
 )
 
-func Find(firstChar rune) Parser {
-	pc := &valueobject.ParserCollection{
-		BlockParsers:  []Parser{entity.NewHeading(), entity.NewParagraph()},
+func Find(firstChar rune) entity.Parser {
+	pc := &entity.ParserCollection{
+		BlockParsers:  []entity.Parser{entity.NewHeading(), entity.NewParagraph()},
 		InlineParsers: nil,
-		ParserMap:     map[valueobject.Identifier]Parser{},
+		ParserMap:     map[valueobject.Identifier]entity.Parser{},
 	}
 	pc.InitParserMap()
 

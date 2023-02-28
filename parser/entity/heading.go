@@ -2,7 +2,6 @@ package entity
 
 import (
 	"errors"
-	"github.com/dddplayer/markdown/parser"
 	"github.com/dddplayer/markdown/parser/valueobject"
 	"golang.org/x/exp/slices"
 	"strings"
@@ -11,7 +10,7 @@ import (
 type heading struct {
 }
 
-func NewHeading() parser.Parser {
+func NewHeading() Parser {
 	return &heading{}
 }
 
@@ -23,7 +22,7 @@ func (h *heading) Identifiers() []valueobject.Identifier {
 	return []valueobject.Identifier{valueobject.HeadIdentifier}
 }
 
-func (h *heading) Parse(l parser.Line) (parser.ParseResult, error) {
+func (h *heading) Parse(l Line) (ParseResult, error) {
 	if h.valid(l) == false {
 		return nil, errors.New("invalid line for heading block parser")
 	}
@@ -34,7 +33,7 @@ func (h *heading) Parse(l parser.Line) (parser.ParseResult, error) {
 	}, nil
 }
 
-func (h *heading) valid(l parser.Line) bool {
+func (h *heading) valid(l Line) bool {
 	return slices.Contains(h.Identifiers(), valueobject.Identifier(l.FirstChar()))
 }
 

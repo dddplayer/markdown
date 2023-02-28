@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/dddplayer/markdown/parser"
+	"github.com/dddplayer/markdown/parser/entity"
 )
 
 type Head struct {
@@ -10,7 +10,7 @@ type Head struct {
 	Level   int
 }
 
-func NewHead(p parser.Parser, l parser.Line) (*Head, error) {
+func NewHead(p entity.Parser, l entity.Line) (*Head, error) {
 	pr, err := p.Parse(l)
 	if err != nil {
 		return nil, err
@@ -30,6 +30,6 @@ func NewHead(p parser.Parser, l parser.Line) (*Head, error) {
 	return h, err
 }
 
-func (h *Head) Continue(line parser.Line) ParseState {
+func (h *Head) Continue(line entity.Line) ParseState {
 	return Close
 }

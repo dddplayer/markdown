@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/dddplayer/markdown/parser"
+	"github.com/dddplayer/markdown/parser/entity"
 	"github.com/dddplayer/markdown/parser/valueobject"
 )
 
@@ -12,7 +12,7 @@ type Block interface {
 	Node() *node
 	AppendBlock(b Block)
 	ParentBlock() Block
-	Continue(line parser.Line) ParseState
+	Continue(line entity.Line) ParseState
 }
 
 type ParseState int
@@ -33,7 +33,11 @@ const (
 type BaseBlock struct {
 	*node
 	state  BlockState
-	Parser parser.Parser
+	Parser entity.Parser
+}
+
+func (b *BaseBlock) AppendBlock(block Block) {
+	b.node.AppendChild(block.Node().Node)
 }
 
 func (b *BaseBlock) IsOpen() bool {
@@ -55,4 +59,8 @@ func (b *BaseBlock) Node() *node {
 
 func (b *BaseBlock) ParentBlock() Block {
 	return b.node.Parent.Val.(*node).B
+}
+
+func (b *BaseBlock) Continue(line entity.Line) ParseState {
+	panic("should be override")
 }

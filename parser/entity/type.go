@@ -1,4 +1,4 @@
-package parser
+package entity
 
 import "github.com/dddplayer/markdown/parser/valueobject"
 
