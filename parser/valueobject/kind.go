@@ -3,6 +3,7 @@ package valueobject
 type Kind uint8
 
 const (
-	KindHead Kind = iota
+	KindRoot Kind = iota
+	KindHead
 	KindParagraph
 )

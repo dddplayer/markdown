@@ -7,7 +7,10 @@ import (
 
 func Find(firstChar rune) entity.Parser {
 	pc := &entity.ParserCollection{
-		BlockParsers:  []entity.Parser{entity.NewHeading(), entity.NewParagraph()},
+		BlockParsers: []entity.Parser{
+			entity.NewRoot(),
+			entity.NewHeading(),
+			entity.NewParagraph()},
 		InlineParsers: nil,
 		ParserMap:     map[valueobject.Identifier]entity.Parser{},
 	}

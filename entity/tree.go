@@ -5,7 +5,8 @@ import (
 )
 
 func NewTree() *tree {
-	return &tree{&datastructure.Tree{Root: NewNode().TreeNode}}
+	r, _ := NewRoot()
+	return &tree{&datastructure.Tree{Root: r.Node().TreeNode}}
 }
 
 type tree struct {

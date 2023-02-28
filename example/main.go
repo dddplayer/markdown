@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/dddplayer/markdown"
+	"github.com/dddplayer/markdown/entity"
+	"github.com/dddplayer/markdown/parser/valueobject"
 	"os"
 	"path/filepath"
 
@@ -26,7 +28,26 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Printf("%#v", d)
+
+	d.Step(
+		func(block entity.Block) error {
+			fmt.Println("in", block.Kind())
+			switch block.Kind() {
+			case valueobject.KindRoot:
+				fmt.Println("root")
+			case valueobject.KindHead:
+				h := block.(*entity.Head)
+				fmt.Println(h.Level, h.Content)
+			case valueobject.KindParagraph:
+				h := block.(*entity.Paragraph)
+				fmt.Println(h.Content)
+			}
+			return nil
+		},
+		func(block entity.Block) error {
+			fmt.Println("out", block.Kind())
+			return nil
+		})
 }
 
 func writeFiles(s string, dir string) {

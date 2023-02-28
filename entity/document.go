@@ -2,6 +2,7 @@ package entity
 
 import (
 	"fmt"
+	"github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser"
 	"github.com/dddplayer/markdown/parser/valueobject"
 	"github.com/dddplayer/markdown/reader"
@@ -13,6 +14,25 @@ type Document struct {
 	*tree
 	Name         string
 	currentBlock Block
+}
+
+type StepIn func(block Block) error
+type StepOut StepIn
+
+func (d *Document) Step(in StepIn, out StepOut) {
+	d.Walk(func(v any, ws datastructure.WalkState) datastructure.WalkStatus {
+		b := v.(*blockNode).MdBlock
+		if ws == datastructure.WalkIn {
+			if err := in(b); err != nil {
+				return datastructure.WalkStop
+			}
+		} else {
+			if err := out(b); err != nil {
+				return datastructure.WalkStop
+			}
+		}
+		return datastructure.WalkContinue
+	})
 }
 
 func (d *Document) Build(f *os.File) error {
