@@ -16,10 +16,7 @@ func (p *root) Identifiers() []valueobject.Identifier {
 }
 
 func (p *root) Parse(l Line) (ParseResult, error) {
-	return &block{
-		identifier: "",
-		content:    "",
-	}, nil
+	panic("root cannot parse anything")
 }
 
 func (p *root) Kind() valueobject.Kind {
