@@ -16,7 +16,7 @@ func NewParagraph(p entity.Parser, l entity.Line) (*Paragraph, error) {
 		return nil, err
 	}
 
-	n := NewNode()
+	n := NewBlockNode()
 	paragraph := &Paragraph{
 		BaseBlock: &BaseBlock{
 			blockNode: n,

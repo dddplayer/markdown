@@ -10,7 +10,7 @@ type Root struct {
 }
 
 func NewRoot() (*Root, error) {
-	n := NewNode()
+	n := NewBlockNode()
 	r := &Root{
 		BaseBlock: &BaseBlock{
 			blockNode: n,

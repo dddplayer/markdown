@@ -22,7 +22,7 @@ type blockNode struct {
 	*datastructure.TreeNode
 }
 
-func NewNode() *blockNode {
+func NewBlockNode() *blockNode {
 	dsn := &datastructure.TreeNode{
 		Val:        nil,
 		FirstChild: nil,

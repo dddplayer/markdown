@@ -16,7 +16,7 @@ func NewHead(p entity.Parser, l entity.Line) (*Head, error) {
 		return nil, err
 	}
 
-	n := NewNode()
+	n := NewBlockNode()
 	h := &Head{
 		BaseBlock: &BaseBlock{
 			blockNode: n,
