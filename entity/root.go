@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser"
 	"github.com/dddplayer/markdown/parser/valueobject"
 )
@@ -10,14 +11,13 @@ type Root struct {
 }
 
 func NewRoot() (*Root, error) {
-	n := NewBlockNode()
 	r := &Root{
 		BaseBlock: &BaseBlock{
-			blockNode: n,
-			Parser:    parser.Find(rune(valueobject.RootIdentifier)),
+			TreeNode: datastructure.EmptyTreeNode(),
+			Parser:   parser.Find(rune(valueobject.RootIdentifier)),
 		},
 	}
 
-	n.MdBlock = r
+	r.BaseBlock.TreeNode.Val = r
 	return r, nil
 }

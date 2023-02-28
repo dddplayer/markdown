@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser/entity"
 	"github.com/dddplayer/markdown/parser/valueobject"
 )
@@ -9,7 +10,7 @@ type Block interface {
 	IsOpen() bool
 	Close() error
 	Kind() valueobject.Kind
-	Node() *blockNode
+	Node() *datastructure.TreeNode
 	AppendBlock(b Block)
 	ParentBlock() Block
 	Continue(line entity.Line) ParseState
@@ -31,13 +32,13 @@ const (
 )
 
 type BaseBlock struct {
-	*blockNode
+	*datastructure.TreeNode
 	state  BlockState
 	Parser entity.Parser
 }
 
 func (b *BaseBlock) AppendBlock(block Block) {
-	b.blockNode.AppendChild(block.Node().TreeNode)
+	b.AppendChild(block.Node())
 }
 
 func (b *BaseBlock) IsOpen() bool {
@@ -53,12 +54,12 @@ func (b *BaseBlock) Kind() valueobject.Kind {
 	return b.Parser.Kind()
 }
 
-func (b *BaseBlock) Node() *blockNode {
-	return b.blockNode
+func (b *BaseBlock) Node() *datastructure.TreeNode {
+	return b.TreeNode
 }
 
 func (b *BaseBlock) ParentBlock() Block {
-	return b.blockNode.Parent.Val.(*blockNode).MdBlock
+	return b.Parent.Val.(Block)
 }
 
 func (b *BaseBlock) Continue(line entity.Line) ParseState {

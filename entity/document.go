@@ -21,7 +21,7 @@ type StepOut StepIn
 
 func (d *Document) Step(in StepIn, out StepOut) {
 	d.Walk(func(v any, ws datastructure.WalkState) datastructure.WalkStatus {
-		b := v.(*blockNode).MdBlock
+		b := v.(Block)
 		if ws == datastructure.WalkIn {
 			if err := in(b); err != nil {
 				return datastructure.WalkStop

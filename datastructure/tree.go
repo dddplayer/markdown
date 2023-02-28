@@ -12,6 +12,16 @@ type TreeNode struct {
 	Next       *TreeNode
 }
 
+func EmptyTreeNode() *TreeNode {
+	return &TreeNode{
+		Val:        nil,
+		FirstChild: nil,
+		LastChild:  nil,
+		Parent:     nil,
+		Next:       nil,
+	}
+}
+
 func (n *TreeNode) AppendChild(child *TreeNode) {
 	if n.FirstChild == nil {
 		n.FirstChild = child

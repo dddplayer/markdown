@@ -1,6 +1,7 @@
 package entity
 
 import (
+	"github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser/entity"
 	"strings"
 )
@@ -16,16 +17,15 @@ func NewParagraph(p entity.Parser, l entity.Line) (*Paragraph, error) {
 		return nil, err
 	}
 
-	n := NewBlockNode()
 	paragraph := &Paragraph{
 		BaseBlock: &BaseBlock{
-			blockNode: n,
-			Parser:    p,
+			TreeNode: datastructure.EmptyTreeNode(),
+			Parser:   p,
 		},
 		Content: []string{pr.Content()},
 	}
 
-	n.MdBlock = paragraph
+	paragraph.BaseBlock.TreeNode.Val = paragraph
 	return paragraph, err
 }
 
