@@ -2,7 +2,6 @@ package entity
 
 import (
 	"github.com/dddplayer/markdown/parser"
-	"github.com/dddplayer/markdown/parser/entity"
 	"github.com/dddplayer/markdown/parser/valueobject"
 )
 
@@ -21,8 +20,4 @@ func NewRoot() (*Root, error) {
 
 	n.MdBlock = r
 	return r, nil
-}
-
-func (r *Root) Continue(line entity.Line) ParseState {
-	return Close
 }

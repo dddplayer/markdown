@@ -6,10 +6,9 @@ import (
 	"github.com/dddplayer/markdown"
 	"github.com/dddplayer/markdown/entity"
 	"github.com/dddplayer/markdown/parser/valueobject"
+	"golang.org/x/tools/txtar"
 	"os"
 	"path/filepath"
-
-	"golang.org/x/tools/txtar"
 )
 
 func main() {
