@@ -19,13 +19,13 @@ func NewParagraph(p entity.Parser, l entity.Line) (*Paragraph, error) {
 	n := NewNode()
 	paragraph := &Paragraph{
 		BaseBlock: &BaseBlock{
-			node:   n,
-			Parser: p,
+			blockNode: n,
+			Parser:    p,
 		},
 		Content: []string{pr.Content()},
 	}
 
-	n.B = paragraph
+	n.MdBlock = paragraph
 	return paragraph, err
 }
 

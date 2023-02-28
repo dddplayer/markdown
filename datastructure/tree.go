@@ -1,18 +1,18 @@
 package datastructure
 
 type Tree struct {
-	Root *Node
+	Root *TreeNode
 }
 
-type Node struct {
+type TreeNode struct {
 	Val        any
-	FirstChild *Node
-	LastChild  *Node
-	Parent     *Node
-	Next       *Node
+	FirstChild *TreeNode
+	LastChild  *TreeNode
+	Parent     *TreeNode
+	Next       *TreeNode
 }
 
-func (n *Node) AppendChild(child *Node) {
+func (n *TreeNode) AppendChild(child *TreeNode) {
 	if n.FirstChild == nil {
 		n.FirstChild = child
 		child.Next = nil

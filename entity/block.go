@@ -9,7 +9,7 @@ type Block interface {
 	IsOpen() bool
 	Close() error
 	Kind() valueobject.Kind
-	Node() *node
+	Node() *blockNode
 	AppendBlock(b Block)
 	ParentBlock() Block
 	Continue(line entity.Line) ParseState
@@ -31,13 +31,13 @@ const (
 )
 
 type BaseBlock struct {
-	*node
+	*blockNode
 	state  BlockState
 	Parser entity.Parser
 }
 
 func (b *BaseBlock) AppendBlock(block Block) {
-	b.node.AppendChild(block.Node().Node)
+	b.blockNode.AppendChild(block.Node().TreeNode)
 }
 
 func (b *BaseBlock) IsOpen() bool {
@@ -53,12 +53,12 @@ func (b *BaseBlock) Kind() valueobject.Kind {
 	return b.Parser.Kind()
 }
 
-func (b *BaseBlock) Node() *node {
-	return b.node
+func (b *BaseBlock) Node() *blockNode {
+	return b.blockNode
 }
 
 func (b *BaseBlock) ParentBlock() Block {
-	return b.node.Parent.Val.(*node).B
+	return b.blockNode.Parent.Val.(*blockNode).MdBlock
 }
 
 func (b *BaseBlock) Continue(line entity.Line) ParseState {

@@ -5,7 +5,7 @@ import (
 )
 
 func NewTree() *tree {
-	return &tree{&datastructure.Tree{Root: NewNode().Node}}
+	return &tree{&datastructure.Tree{Root: NewNode().TreeNode}}
 }
 
 type tree struct {
@@ -13,16 +13,16 @@ type tree struct {
 }
 
 func (t *tree) RootBlock() Block {
-	return t.Tree.Root.Val.(*node).B
+	return t.Tree.Root.Val.(*blockNode).MdBlock
 }
 
-type node struct {
-	B Block
-	*datastructure.Node
+type blockNode struct {
+	MdBlock Block
+	*datastructure.TreeNode
 }
 
-func NewNode() *node {
-	dsn := &datastructure.Node{
+func NewNode() *blockNode {
+	dsn := &datastructure.TreeNode{
 		Val:        nil,
 		FirstChild: nil,
 		LastChild:  nil,
@@ -30,12 +30,12 @@ func NewNode() *node {
 		Next:       nil,
 	}
 	bb := &BaseBlock{state: Closed}
-	n := &node{
-		B:    bb,
-		Node: dsn,
+	n := &blockNode{
+		MdBlock:  bb,
+		TreeNode: dsn,
 	}
 	dsn.Val = n
-	bb.node = n
+	bb.blockNode = n
 
 	return n
 }

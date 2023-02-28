@@ -19,14 +19,14 @@ func NewHead(p entity.Parser, l entity.Line) (*Head, error) {
 	n := NewNode()
 	h := &Head{
 		BaseBlock: &BaseBlock{
-			node:   n,
-			Parser: p,
+			blockNode: n,
+			Parser:    p,
 		},
 		Content: pr.Content(),
 		Level:   len(pr.Identifier()),
 	}
 
-	n.B = h
+	n.MdBlock = h
 	return h, err
 }
 
