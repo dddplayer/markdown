@@ -30,6 +30,6 @@ func NewHead(p entity.Parser, l entity.Line) (*Head, error) {
 	return h, err
 }
 
-func (h *Head) Continue(line entity.Line) ParseState {
+func (h *Head) Continue(line entity.Line) ParseDecision {
 	return Close
 }

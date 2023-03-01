@@ -13,13 +13,13 @@ type Block interface {
 	Node() *datastructure.TreeNode
 	AppendBlock(b Block)
 	ParentBlock() Block
-	Continue(line entity.Line) ParseState
+	Continue(line entity.Line) ParseDecision
 }
 
-type ParseState int
+type ParseDecision int
 
 const (
-	Continue ParseState = 1 << iota
+	Continue ParseDecision = 1 << iota
 	Children
 	Close
 )
@@ -62,6 +62,6 @@ func (b *BaseBlock) ParentBlock() Block {
 	return b.Parent.Val.(Block)
 }
 
-func (b *BaseBlock) Continue(line entity.Line) ParseState {
+func (b *BaseBlock) Continue(line entity.Line) ParseDecision {
 	panic("should be override")
 }

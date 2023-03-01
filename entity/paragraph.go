@@ -29,7 +29,7 @@ func NewParagraph(p entity.Parser, l entity.Line) (*Paragraph, error) {
 	return paragraph, err
 }
 
-func (p *Paragraph) Continue(line entity.Line) ParseState {
+func (p *Paragraph) Continue(line entity.Line) ParseDecision {
 	pr, err := p.BaseBlock.Parser.Parse(line)
 	if err != nil {
 		panic("parse paragraph block err")
