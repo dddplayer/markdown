@@ -11,7 +11,7 @@ import (
 )
 
 type Document struct {
-	*tree
+	*blockTree
 	Name         string
 	currentBlock Block
 }
@@ -36,7 +36,7 @@ func (d *Document) Step(in StepIn, out StepOut) {
 }
 
 func (d *Document) Build(f *os.File) error {
-	d.tree = NewTree()
+	d.blockTree = NewTree()
 
 	parent := d.RootBlock()
 	reader.Scan(f, func(l *entity.Line) error {
@@ -77,12 +77,13 @@ func (d *Document) Build(f *os.File) error {
 }
 
 func (d *Document) OpenBlock(l *entity.Line) (Block, error) {
-	p := parser.Find(l.FirstChar)
+	line := &line{l}
+	p := parser.Find(line.FirstChar())
 	switch p.Kind() {
 	case valueobject.KindHead:
-		return NewHead(p, &line{l})
+		return NewHead(p, line)
 	case valueobject.KindParagraph:
-		return NewParagraph(p, &line{l})
+		return NewParagraph(p, line)
 	}
 
 	return nil, nil

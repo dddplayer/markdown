@@ -7,5 +7,5 @@ type line struct {
 }
 
 func (l *line) FirstChar() rune {
-	return l.Line.FirstChar
+	return rune(l.Line.Content[0])
 }

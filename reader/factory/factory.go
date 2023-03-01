@@ -8,8 +8,7 @@ func NewLine(i int, b []byte) *entity.Line {
 	}
 
 	return &entity.Line{
-		Index:     i,
-		FirstChar: rune(b[0]),
-		Content:   b,
+		Index:   i,
+		Content: b,
 	}
 }

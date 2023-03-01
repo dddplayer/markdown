@@ -1,9 +1,8 @@
 package entity
 
 type Line struct {
-	Index     int
-	FirstChar rune
-	Content   []byte
+	Index   int
+	Content []byte
 }
 
 func (l *Line) String() string {

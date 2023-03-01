@@ -4,15 +4,15 @@ import (
 	"github.com/dddplayer/markdown/datastructure"
 )
 
-func NewTree() *tree {
+func NewTree() *blockTree {
 	r, _ := NewRoot()
-	return &tree{&datastructure.Tree{Root: r.TreeNode}}
+	return &blockTree{&datastructure.Tree{Root: r.TreeNode}}
 }
 
-type tree struct {
+type blockTree struct {
 	*datastructure.Tree
 }
 
-func (t *tree) RootBlock() Block {
+func (t *blockTree) RootBlock() Block {
 	return t.Tree.Root.Val.(*Root)
 }
