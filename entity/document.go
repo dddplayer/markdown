@@ -4,25 +4,25 @@ import (
 	"fmt"
 	"github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser"
-	"github.com/dddplayer/markdown/parser/valueobject"
+	psvo "github.com/dddplayer/markdown/parser/valueobject"
 	"github.com/dddplayer/markdown/reader"
 	"github.com/dddplayer/markdown/reader/entity"
-	valueobject2 "github.com/dddplayer/markdown/valueobject"
+	mdvo "github.com/dddplayer/markdown/valueobject"
 	"os"
 )
 
 type Document struct {
-	*blockTree
+	*mdvo.BlockTree
 	Name         string
-	currentBlock valueobject2.Block
+	currentBlock mdvo.Block
 }
 
-type StepIn func(block valueobject2.Block) error
+type StepIn func(block mdvo.Block) error
 type StepOut StepIn
 
 func (d *Document) Step(in StepIn, out StepOut) {
 	d.Walk(func(v any, ws datastructure.WalkState) datastructure.WalkStatus {
-		b := v.(valueobject2.Block)
+		b := v.(mdvo.Block)
 		if ws == datastructure.WalkIn {
 			if err := in(b); err != nil {
 				return datastructure.WalkStop
@@ -37,7 +37,7 @@ func (d *Document) Step(in StepIn, out StepOut) {
 }
 
 func (d *Document) Build(f *os.File) error {
-	d.blockTree = NewTree()
+	d.BlockTree = mdvo.NewTree(d.openRootBlock())
 
 	parent := d.RootBlock()
 	reader.Scan(f, func(l *entity.Line) error {
@@ -49,9 +49,9 @@ func (d *Document) Build(f *os.File) error {
 		if d.currentBlock != nil {
 			state := d.currentBlock.Continue(&line{l})
 			switch state {
-			case valueobject2.Children:
+			case mdvo.Children:
 				panic("not implemented yet")
-			case valueobject2.Close:
+			case mdvo.Close:
 				if err := d.currentBlock.Close(); err != nil {
 					return err
 				}
@@ -62,7 +62,7 @@ func (d *Document) Build(f *os.File) error {
 					d.currentBlock = nil
 				}
 				goto retry
-			case valueobject2.Continue:
+			case mdvo.Continue:
 				fmt.Println("continue")
 			}
 		}
@@ -77,15 +77,20 @@ func (d *Document) Build(f *os.File) error {
 	return nil
 }
 
-func (d *Document) OpenBlock(l *entity.Line) (valueobject2.Block, error) {
+func (d *Document) OpenBlock(l *entity.Line) (mdvo.Block, error) {
 	line := &line{l}
 	p := parser.Find(line.FirstChar())
 	switch p.Kind() {
-	case valueobject.KindHead:
+	case psvo.KindHead:
 		return NewHead(p, line)
-	case valueobject.KindParagraph:
+	case psvo.KindParagraph:
 		return NewParagraph(p, line)
 	}
 
 	return nil, nil
+}
+
+func (d *Document) openRootBlock() mdvo.Block {
+	r, _ := NewRoot()
+	return r
 }
