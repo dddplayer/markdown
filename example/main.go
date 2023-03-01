@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"github.com/dddplayer/markdown"
 	"github.com/dddplayer/markdown/entity"
-	"github.com/dddplayer/markdown/parser/valueobject"
+	psvo "github.com/dddplayer/markdown/parser/valueobject"
+	mdvo "github.com/dddplayer/markdown/valueobject"
 	"golang.org/x/tools/txtar"
 	"os"
 	"path/filepath"
@@ -29,21 +30,21 @@ func main() {
 	}
 
 	d.Step(
-		func(block entity.Block) error {
+		func(block mdvo.Block) error {
 			fmt.Println("in", block.Kind())
 			switch block.Kind() {
-			case valueobject.KindRoot:
+			case psvo.KindRoot:
 				fmt.Println("root")
-			case valueobject.KindHead:
+			case psvo.KindHead:
 				h := block.(*entity.Head)
 				fmt.Println(h.Level, h.Content)
-			case valueobject.KindParagraph:
+			case psvo.KindParagraph:
 				h := block.(*entity.Paragraph)
 				fmt.Println(h.Content)
 			}
 			return nil
 		},
-		func(block entity.Block) error {
+		func(block mdvo.Block) error {
 			fmt.Println("out", block.Kind())
 			return nil
 		})

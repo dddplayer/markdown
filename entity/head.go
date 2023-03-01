@@ -3,10 +3,11 @@ package entity
 import (
 	"github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser/entity"
+	"github.com/dddplayer/markdown/valueobject"
 )
 
 type Head struct {
-	*BaseBlock
+	*valueobject.BaseBlock
 	Content string
 	Level   int
 }
@@ -18,7 +19,7 @@ func NewHead(p entity.Parser, l entity.Line) (*Head, error) {
 	}
 
 	h := &Head{
-		BaseBlock: &BaseBlock{
+		BaseBlock: &valueobject.BaseBlock{
 			TreeNode: datastructure.EmptyTreeNode(),
 			Parser:   p,
 		},
@@ -30,6 +31,6 @@ func NewHead(p entity.Parser, l entity.Line) (*Head, error) {
 	return h, err
 }
 
-func (h *Head) Continue(line entity.Line) ParseDecision {
-	return Close
+func (h *Head) Continue(line entity.Line) valueobject.ParseDecision {
+	return valueobject.Close
 }

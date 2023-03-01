@@ -3,11 +3,12 @@ package entity
 import (
 	"github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser/entity"
+	"github.com/dddplayer/markdown/valueobject"
 	"strings"
 )
 
 type Paragraph struct {
-	*BaseBlock
+	*valueobject.BaseBlock
 	Content []string
 }
 
@@ -18,7 +19,7 @@ func NewParagraph(p entity.Parser, l entity.Line) (*Paragraph, error) {
 	}
 
 	paragraph := &Paragraph{
-		BaseBlock: &BaseBlock{
+		BaseBlock: &valueobject.BaseBlock{
 			TreeNode: datastructure.EmptyTreeNode(),
 			Parser:   p,
 		},
@@ -29,17 +30,17 @@ func NewParagraph(p entity.Parser, l entity.Line) (*Paragraph, error) {
 	return paragraph, err
 }
 
-func (p *Paragraph) Continue(line entity.Line) ParseDecision {
+func (p *Paragraph) Continue(line entity.Line) valueobject.ParseDecision {
 	pr, err := p.BaseBlock.Parser.Parse(line)
 	if err != nil {
 		panic("parse paragraph block err")
 	}
 
 	if isBlank(pr.Content()) {
-		return Close
+		return valueobject.Close
 	}
 	p.Content = append(p.Content, line.String())
-	return Continue
+	return valueobject.Continue
 }
 
 func isBlank(s string) bool {

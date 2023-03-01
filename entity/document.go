@@ -7,21 +7,22 @@ import (
 	"github.com/dddplayer/markdown/parser/valueobject"
 	"github.com/dddplayer/markdown/reader"
 	"github.com/dddplayer/markdown/reader/entity"
+	valueobject2 "github.com/dddplayer/markdown/valueobject"
 	"os"
 )
 
 type Document struct {
 	*blockTree
 	Name         string
-	currentBlock Block
+	currentBlock valueobject2.Block
 }
 
-type StepIn func(block Block) error
+type StepIn func(block valueobject2.Block) error
 type StepOut StepIn
 
 func (d *Document) Step(in StepIn, out StepOut) {
 	d.Walk(func(v any, ws datastructure.WalkState) datastructure.WalkStatus {
-		b := v.(Block)
+		b := v.(valueobject2.Block)
 		if ws == datastructure.WalkIn {
 			if err := in(b); err != nil {
 				return datastructure.WalkStop
@@ -48,9 +49,9 @@ func (d *Document) Build(f *os.File) error {
 		if d.currentBlock != nil {
 			state := d.currentBlock.Continue(&line{l})
 			switch state {
-			case Children:
+			case valueobject2.Children:
 				panic("not implemented yet")
-			case Close:
+			case valueobject2.Close:
 				if err := d.currentBlock.Close(); err != nil {
 					return err
 				}
@@ -61,7 +62,7 @@ func (d *Document) Build(f *os.File) error {
 					d.currentBlock = nil
 				}
 				goto retry
-			case Continue:
+			case valueobject2.Continue:
 				fmt.Println("continue")
 			}
 		}
@@ -76,7 +77,7 @@ func (d *Document) Build(f *os.File) error {
 	return nil
 }
 
-func (d *Document) OpenBlock(l *entity.Line) (Block, error) {
+func (d *Document) OpenBlock(l *entity.Line) (valueobject2.Block, error) {
 	line := &line{l}
 	p := parser.Find(line.FirstChar())
 	switch p.Kind() {

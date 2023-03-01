@@ -1,4 +1,4 @@
-package entity
+package valueobject
 
 import (
 	"github.com/dddplayer/markdown/datastructure"

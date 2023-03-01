@@ -4,15 +4,16 @@ import (
 	"github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser"
 	"github.com/dddplayer/markdown/parser/valueobject"
+	valueobject2 "github.com/dddplayer/markdown/valueobject"
 )
 
 type Root struct {
-	*BaseBlock
+	*valueobject2.BaseBlock
 }
 
 func NewRoot() (*Root, error) {
 	r := &Root{
-		BaseBlock: &BaseBlock{
+		BaseBlock: &valueobject2.BaseBlock{
 			TreeNode: datastructure.EmptyTreeNode(),
 			Parser:   parser.Find(rune(valueobject.RootIdentifier)),
 		},
