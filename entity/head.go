@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/dddplayer/markdown/datastructure"
+	entity2 "github.com/dddplayer/markdown/datastructure/entity"
 	"github.com/dddplayer/markdown/parser/entity"
 	"github.com/dddplayer/markdown/valueobject"
 )
@@ -20,7 +20,7 @@ func NewHead(p entity.Parser, l entity.Line) (*Head, error) {
 
 	h := &Head{
 		BaseBlock: &valueobject.BaseBlock{
-			TreeNode: datastructure.EmptyTreeNode(),
+			TreeNode: entity2.EmptyTreeNode(),
 			Parser:   p,
 		},
 		Content: pr.Content(),

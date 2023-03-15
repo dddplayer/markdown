@@ -2,7 +2,7 @@ package entity
 
 import (
 	"fmt"
-	"github.com/dddplayer/markdown/datastructure"
+	entity2 "github.com/dddplayer/markdown/datastructure/entity"
 	"github.com/dddplayer/markdown/parser"
 	psvo "github.com/dddplayer/markdown/parser/valueobject"
 	"github.com/dddplayer/markdown/reader"
@@ -21,18 +21,18 @@ type StepIn func(block mdvo.Block) error
 type StepOut StepIn
 
 func (d *Document) Step(in StepIn, out StepOut) {
-	d.Walk(func(v any, ws datastructure.WalkState) datastructure.WalkStatus {
+	d.Walk(func(v any, ws entity2.WalkState) entity2.WalkStatus {
 		b := v.(mdvo.Block)
-		if ws == datastructure.WalkIn {
+		if ws == entity2.WalkIn {
 			if err := in(b); err != nil {
-				return datastructure.WalkStop
+				return entity2.WalkStop
 			}
 		} else {
 			if err := out(b); err != nil {
-				return datastructure.WalkStop
+				return entity2.WalkStop
 			}
 		}
-		return datastructure.WalkContinue
+		return entity2.WalkContinue
 	})
 }
 

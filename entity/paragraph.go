@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/dddplayer/markdown/datastructure"
+	entity2 "github.com/dddplayer/markdown/datastructure/entity"
 	"github.com/dddplayer/markdown/parser/entity"
 	"github.com/dddplayer/markdown/valueobject"
 	"strings"
@@ -20,7 +20,7 @@ func NewParagraph(p entity.Parser, l entity.Line) (*Paragraph, error) {
 
 	paragraph := &Paragraph{
 		BaseBlock: &valueobject.BaseBlock{
-			TreeNode: datastructure.EmptyTreeNode(),
+			TreeNode: entity2.EmptyTreeNode(),
 			Parser:   p,
 		},
 		Content: []string{pr.Content()},

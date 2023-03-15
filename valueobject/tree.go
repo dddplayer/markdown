@@ -1,15 +1,15 @@
 package valueobject
 
 import (
-	"github.com/dddplayer/markdown/datastructure"
+	"github.com/dddplayer/markdown/datastructure/entity"
 )
 
 func NewTree(b Block) *BlockTree {
-	return &BlockTree{&datastructure.Tree{Root: b.Node()}}
+	return &BlockTree{&entity.Tree{Root: b.Node()}}
 }
 
 type BlockTree struct {
-	*datastructure.Tree
+	*entity.Tree
 }
 
 func (t *BlockTree) RootBlock() Block {

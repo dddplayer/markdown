@@ -1,7 +1,7 @@
 package valueobject
 
 import (
-	"github.com/dddplayer/markdown/datastructure"
+	entity2 "github.com/dddplayer/markdown/datastructure/entity"
 	"github.com/dddplayer/markdown/parser/entity"
 	"github.com/dddplayer/markdown/parser/valueobject"
 )
@@ -10,7 +10,7 @@ type Block interface {
 	IsOpen() bool
 	Close() error
 	Kind() valueobject.Kind
-	Node() *datastructure.TreeNode
+	Node() *entity2.TreeNode
 	AppendBlock(b Block)
 	ParentBlock() Block
 	Continue(line entity.Line) ParseDecision
@@ -32,7 +32,7 @@ const (
 )
 
 type BaseBlock struct {
-	*datastructure.TreeNode
+	*entity2.TreeNode
 	state  BlockState
 	Parser entity.Parser
 }
@@ -54,7 +54,7 @@ func (b *BaseBlock) Kind() valueobject.Kind {
 	return b.Parser.Kind()
 }
 
-func (b *BaseBlock) Node() *datastructure.TreeNode {
+func (b *BaseBlock) Node() *entity2.TreeNode {
 	return b.TreeNode
 }
 
