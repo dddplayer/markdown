@@ -17,8 +17,9 @@ type Document struct {
 	currentBlock mdvo.Block
 }
 
-type StepIn func(block mdvo.Block) error
-type StepOut StepIn
+type StepFunc func(block mdvo.Block) error
+type StepIn StepFunc
+type StepOut StepFunc
 
 func (d *Document) Step(in StepIn, out StepOut) {
 	d.Walk(func(v any, ws entity2.WalkState) entity2.WalkStatus {
