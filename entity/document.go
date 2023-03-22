@@ -48,7 +48,7 @@ func (d *Document) Build(f *os.File) error {
 
 	retry:
 		if d.currentBlock != nil {
-			state := d.currentBlock.Continue(&line{l})
+			state := d.currentBlock.Continue(NewLine(l))
 			switch state {
 			case mdvo.Children:
 				panic("not implemented yet")
@@ -79,7 +79,7 @@ func (d *Document) Build(f *os.File) error {
 }
 
 func (d *Document) OpenBlock(l *entity.Line) (mdvo.Block, error) {
-	line := &line{l}
+	line := NewLine(l)
 	p := parser.Find(line.FirstChar())
 	switch p.Kind() {
 	case psvo.KindHead:

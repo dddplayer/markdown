@@ -1,6 +1,8 @@
 package entity
 
-import "github.com/dddplayer/markdown/reader/entity"
+import (
+	"github.com/dddplayer/markdown/reader/entity"
+)
 
 type line struct {
 	*entity.Line
@@ -8,4 +10,8 @@ type line struct {
 
 func (l *line) FirstChar() rune {
 	return rune(l.Line.Content[0])
+}
+
+func NewLine(l *entity.Line) *line {
+	return &line{l}
 }
