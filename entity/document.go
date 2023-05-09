@@ -2,7 +2,7 @@ package entity
 
 import (
 	"fmt"
-	entity2 "github.com/dddplayer/markdown/datastructure/entity"
+	entity2 "github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser"
 	psvo "github.com/dddplayer/markdown/parser/valueobject"
 	"github.com/dddplayer/markdown/reader"

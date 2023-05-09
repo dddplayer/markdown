@@ -1,4 +1,4 @@
-package entity
+package datastructure
 
 type Tree struct {
 	Root *TreeNode

@@ -1,0 +1,784 @@
+digraph {
+    fontname="Helvetica, Arial, sans-serif"
+    node [fontname="Helvetica, Arial, sans-serif"]
+    edge [fontname="Helvetica, Arial, sans-serif"]
+    graph [style=invis]
+
+    subgraph cluster_ddd_concept{
+        node [shape=rect]
+        edge [style=invis]
+
+        {rank=same node0 node1 node2 node3 node4 node5 node6 node7 node8 node9 node10 node11 node12}
+
+		node12 [label="Attribute" style=filled fillcolor="#f3f3f3ff"]		
+		node11 [label="Interface" style=filled fillcolor="#9fc5e8ff"]		
+		node10 [label="Function" style=filled fillcolor="#ead1dcff"]
+        node9 [label="General" style=filled fillcolor="#f4ccccff"]
+        node8 [label="Class" style=filled fillcolor="#b4a7d6ff"]
+        node7 [label="Factory" style=filled fillcolor="#cfe2f3ff"]
+        node6 [label="Event" style=filled fillcolor="#f6b26bff"]
+        node5 [label="Command" style=filled fillcolor="#a4c2f4ff"]
+        node4 [label="Service" style=filled fillcolor="#e69138ff"]
+        node3 [label="ValueObject" style=filled fillcolor="#a2c4c9ff"]
+        node2 [label="Entity" style=filled fillcolor="#ffe599ff"]
+        node1 [label="AggregateRoot" style=filled fillcolor="#ffd966ff"]
+        node0 [label="BoundedContext" style=dashed fillcolor="#ffffff00"]
+
+        node0 -> node1 -> node2 -> node3 -> node4 -> node5 -> node6 -> node7 -> node8 -> node9 -> node10 -> node11 -> node12
+    }
+
+    
+		subgraph cluster_Abstract {
+	node [style=dotted shape=rect]
+
+	
+		markdown [label=<
+        <table border="0" cellpadding="10">
+			
+				<tr>
+		
+			<td port="first_blank_row" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_service_Parse" bgcolor="#e69138ff" rowspan="1" colspan="8">Parse</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_Parse" bgcolor="#ead1dcff" rowspan="1" colspan="1">Parse</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_check" bgcolor="#ead1dcff" rowspan="1" colspan="1">check</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_NewHead" bgcolor="#ead1dcff" rowspan="1" colspan="1">NewHead</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_NewLine" bgcolor="#ead1dcff" rowspan="1" colspan="1">NewLine</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_NewParagraph" bgcolor="#ead1dcff" rowspan="1" colspan="1">NewParagraph</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_NewRoot" bgcolor="#ead1dcff" rowspan="1" colspan="1">NewRoot</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_isBlank" bgcolor="#ead1dcff" rowspan="1" colspan="1">isBlank</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_NewTree" bgcolor="#ead1dcff" rowspan="1" colspan="1">NewTree</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_OpenBlock" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">OpenBlock</td>
+			<td port="markdown_entity_Build" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Build</td>
+			<td port="markdown_entity_Step" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Step</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_Document" bgcolor="#ffe599ff" rowspan="2" colspan="1">Document</td>
+			<td port="markdown_entity_Document_BlockTree" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">BlockTree</td>
+			<td port="markdown_entity_Document_Name" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Name</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_openRootBlock" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">openRootBlock</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_Document_currentBlock" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">currentBlock</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_Close" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Close</td>
+			<td port="markdown_valueobject_IsOpen" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">IsOpen</td>
+			<td port="markdown_valueobject_AppendBlock" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">AppendBlock</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_BaseBlock" bgcolor="#a2c4c9ff" rowspan="3" colspan="1">BaseBlock</td>
+			<td port="markdown_valueobject_BaseBlock_TreeNode" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">TreeNode</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_ParentBlock" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">ParentBlock</td>
+			<td port="markdown_valueobject_Node" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Node</td>
+			<td port="markdown_valueobject_Kind" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Kind</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_BaseBlock_state" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">state</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_Continue" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Continue</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_BaseBlock_Parser" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Parser</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_Root" bgcolor="#ffe599ff" rowspan="1" colspan="1">Root</td>
+			<td port="markdown_entity_Root_BaseBlock" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">BaseBlock</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_Block_Kind" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Kind</td>
+			<td port="markdown_valueobject_Block_Close" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Close</td>
+			<td port="markdown_valueobject_Block_IsOpen" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">IsOpen</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_Block" bgcolor="#9fc5e8ff" rowspan="3" colspan="1">Block</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_Block_ParentBlock" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">ParentBlock</td>
+			<td port="markdown_valueobject_Block_AppendBlock" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">AppendBlock</td>
+			<td port="markdown_valueobject_Block_Node" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Node</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_Block_Continue" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Continue</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_Continue" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Continue</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_Paragraph" bgcolor="#ffe599ff" rowspan="1" colspan="1">Paragraph</td>
+			<td port="markdown_entity_Paragraph_BaseBlock" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">BaseBlock</td>
+			<td port="markdown_entity_Paragraph_Content" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Content</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_FirstChar" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">FirstChar</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_line" bgcolor="#ffe599ff" rowspan="1" colspan="1">line</td>
+			<td port="markdown_entity_line_Line" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Line</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_Continue" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Continue</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_Head" bgcolor="#ffe599ff" rowspan="1" colspan="1">Head</td>
+			<td port="markdown_entity_Head_BaseBlock" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">BaseBlock</td>
+			<td port="markdown_entity_Head_Content" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Content</td>
+			<td port="markdown_entity_Head_Level" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Level</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_RootBlock" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">RootBlock</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_BlockTree" bgcolor="#a2c4c9ff" rowspan="1" colspan="1">BlockTree</td>
+			<td port="markdown_valueobject_BlockTree_Tree" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Tree</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_StepFunc" bgcolor="#f4ccccff" rowspan="1" colspan="1">StepFunc</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_StepIn" bgcolor="#f4ccccff" rowspan="1" colspan="1">StepIn</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_entity_StepOut" bgcolor="#f4ccccff" rowspan="1" colspan="1">StepOut</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_BlockState" bgcolor="#f4ccccff" rowspan="1" colspan="1">BlockState</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="markdown_valueobject_ParseDecision" bgcolor="#f4ccccff" rowspan="1" colspan="8">ParseDecision</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="10">markdown</td>
+	</tr>
+        </table>
+        > ]
+		datastructure [label=<
+        <table border="0" cellpadding="10">
+			
+				<tr>
+		
+			<td port="first_blank_row" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_Walk" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Walk</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_Tree" bgcolor="#b4a7d6ff" rowspan="1" colspan="1">Tree</td>
+			<td port="datastructure_Tree_Root" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Root</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_EmptyTreeNode" bgcolor="#ead1dcff" rowspan="1" colspan="2">EmptyTreeNode</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_walkNode" bgcolor="#ead1dcff" rowspan="1" colspan="2">walkNode</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_WalkState" bgcolor="#f4ccccff" rowspan="1" colspan="1">WalkState</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_WalkStatus" bgcolor="#f4ccccff" rowspan="1" colspan="1">WalkStatus</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_Walker" bgcolor="#f4ccccff" rowspan="1" colspan="1">Walker</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_AppendChild" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">AppendChild</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_TreeNode" bgcolor="#b4a7d6ff" rowspan="2" colspan="1">TreeNode</td>
+			<td port="datastructure_TreeNode_Val" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Val</td>
+			<td port="datastructure_TreeNode_FirstChild" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">FirstChild</td>
+			<td port="datastructure_TreeNode_LastChild" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">LastChild</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="datastructure_TreeNode_Parent" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Parent</td>
+			<td port="datastructure_TreeNode_Next" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Next</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="8">datastructure</td>
+	</tr>
+        </table>
+        > ]
+		example [label=<
+        <table border="0" cellpadding="10">
+			
+				<tr>
+		
+			<td port="first_blank_row" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="example_main" bgcolor="#ead1dcff" rowspan="1" colspan="1">main</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="example_writeFiles" bgcolor="#ead1dcff" rowspan="1" colspan="1">writeFiles</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="6">example</td>
+	</tr>
+        </table>
+        > ]
+		parser [label=<
+        <table border="0" cellpadding="10">
+			
+				<tr>
+		
+			<td port="first_blank_row" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_factory_NewParserCollection" bgcolor="#cfe2f3ff" rowspan="1" colspan="8">NewParserCollection</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_Find" bgcolor="#ead1dcff" rowspan="1" colspan="1">Find</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_NewHeading" bgcolor="#ead1dcff" rowspan="1" colspan="1">NewHeading</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_NewParagraph" bgcolor="#ead1dcff" rowspan="1" colspan="1">NewParagraph</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_NewRoot" bgcolor="#ead1dcff" rowspan="1" colspan="1">NewRoot</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_headerRaw" bgcolor="#ead1dcff" rowspan="1" colspan="3">headerRaw</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_level" bgcolor="#ead1dcff" rowspan="1" colspan="3">level</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_Kind" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Kind</td>
+			<td port="parser_entity_Parse" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Parse</td>
+			<td port="parser_entity_Identifiers" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Identifiers</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_root" bgcolor="#ffe599ff" rowspan="1" colspan="1">root</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_Parse" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Parse</td>
+			<td port="parser_entity_Identifiers" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Identifiers</td>
+			<td port="parser_entity_Kind" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Kind</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_heading" bgcolor="#ffe599ff" rowspan="2" colspan="1">heading</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_valid" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">valid</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_Kind" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Kind</td>
+			<td port="parser_entity_Parse" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Parse</td>
+			<td port="parser_entity_Identifiers" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Identifiers</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_paragraph" bgcolor="#ffe599ff" rowspan="1" colspan="1">paragraph</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_InitParserMap" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">InitParserMap</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_ParserCollection" bgcolor="#ffe599ff" rowspan="1" colspan="1">ParserCollection</td>
+			<td port="parser_entity_ParserCollection_BlockParsers" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">BlockParsers</td>
+			<td port="parser_entity_ParserCollection_InlineParsers" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">InlineParsers</td>
+			<td port="parser_entity_ParserCollection_ParserMap" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">ParserMap</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_Parser_Parse" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Parse</td>
+			<td port="parser_entity_Parser_Kind" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Kind</td>
+			<td port="parser_entity_Parser_Identifiers" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Identifiers</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_Parser" bgcolor="#9fc5e8ff" rowspan="1" colspan="1">Parser</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_Identifier" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Identifier</td>
+			<td port="parser_entity_Content" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Content</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_block" bgcolor="#ffe599ff" rowspan="1" colspan="1">block</td>
+			<td port="parser_entity_block_identifier" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">identifier</td>
+			<td port="parser_entity_block_content" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">content</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_ParseResult_Identifier" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Identifier</td>
+			<td port="parser_entity_ParseResult_Content" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Content</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_ParseResult" bgcolor="#9fc5e8ff" rowspan="1" colspan="1">ParseResult</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_Line_FirstChar" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">FirstChar</td>
+			<td port="parser_entity_Line_String" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">String</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_entity_Line" bgcolor="#9fc5e8ff" rowspan="1" colspan="1">Line</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_valueobject_Identifier" bgcolor="#f4ccccff" rowspan="1" colspan="3">Identifier</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="parser_valueobject_Kind" bgcolor="#f4ccccff" rowspan="1" colspan="3">Kind</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="10">parser</td>
+	</tr>
+        </table>
+        > ]
+		reader [label=<
+        <table border="0" cellpadding="10">
+			
+				<tr>
+		
+			<td port="first_blank_row" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="reader_factory_NewLine" bgcolor="#cfe2f3ff" rowspan="1" colspan="5">NewLine</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="reader_valueobject_Scan" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Scan</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="reader_valueobject_LineReader" bgcolor="#a2c4c9ff" rowspan="1" colspan="1">LineReader</td>
+			<td port="reader_valueobject_LineReader_F" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">F</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="reader_Scan" bgcolor="#ead1dcff" rowspan="1" colspan="5">Scan</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="reader_valueobject_ScanFunc" bgcolor="#f4ccccff" rowspan="1" colspan="5">ScanFunc</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="reader_entity_String" bgcolor="#a4c2f4ff" rowspan="1" colspan="1">String</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+			<td port="reader_entity_Line" bgcolor="#ffe599ff" rowspan="1" colspan="1">Line</td>
+			<td port="reader_entity_Line_Index" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Index</td>
+			<td port="reader_entity_Line_Content" bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Content</td>
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="1"></td>
+	</tr>
+				<tr>
+		
+			<td port="" bgcolor="white" rowspan="1" colspan="7">reader</td>
+	</tr>
+        </table>
+        > ]
+
+    }
+
+	
+		markdown:markdown_Parse -> markdown:markdown_check  [style=dotted]
+		markdown:markdown_Parse -> markdown:markdown_service_Parse  [style=dotted]
+		datastructure:datastructure_Walk -> datastructure:datastructure_walkNode  [style=dotted]
+		datastructure:datastructure_walkNode -> datastructure:datastructure_walkNode  [style=dotted]
+		datastructure:datastructure_walkNode -> markdown:markdown_entity_Step  [style=dotted]
+		datastructure:datastructure_Tree_Root -> datastructure:datastructure_TreeNode  [style=dotted]
+		datastructure:datastructure_TreeNode_FirstChild -> datastructure:datastructure_TreeNode  [style=dotted]
+		datastructure:datastructure_TreeNode_LastChild -> datastructure:datastructure_TreeNode  [style=dotted]
+		datastructure:datastructure_TreeNode_Next -> datastructure:datastructure_TreeNode  [style=dotted]
+		datastructure:datastructure_TreeNode_Parent -> datastructure:datastructure_TreeNode  [style=dotted]
+		markdown:markdown_entity_NewHead -> datastructure:datastructure_EmptyTreeNode  [style=dotted]
+		markdown:markdown_entity_NewParagraph -> datastructure:datastructure_EmptyTreeNode  [style=dotted]
+		markdown:markdown_entity_NewRoot -> datastructure:datastructure_EmptyTreeNode  [style=dotted]
+		markdown:markdown_entity_Step -> datastructure:datastructure_Walk  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_entity_Continue  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_entity_NewLine  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_entity_OpenBlock  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_entity_openRootBlock  [style=dotted]
+		markdown:markdown_entity_Continue -> markdown:markdown_entity_isBlank  [style=dotted]
+		markdown:markdown_entity_OpenBlock -> markdown:markdown_entity_FirstChar  [style=dotted]
+		markdown:markdown_entity_OpenBlock -> markdown:markdown_entity_NewHead  [style=dotted]
+		markdown:markdown_entity_OpenBlock -> markdown:markdown_entity_NewLine  [style=dotted]
+		markdown:markdown_entity_OpenBlock -> markdown:markdown_entity_NewParagraph  [style=dotted]
+		markdown:markdown_entity_openRootBlock -> markdown:markdown_entity_NewRoot  [style=dotted]
+		markdown:markdown_entity_Step -> example:example_main  [style=dotted]
+		markdown:markdown_entity_NewRoot -> parser:parser_Find  [style=dotted]
+		markdown:markdown_entity_OpenBlock -> parser:parser_Find  [style=dotted]
+		markdown:markdown_entity_Continue -> parser:parser_entity_Content  [style=dotted]
+		markdown:markdown_entity_Continue -> parser:parser_entity_Parse  [style=dotted]
+		markdown:markdown_entity_NewHead -> parser:parser_entity_Content  [style=dotted]
+		markdown:markdown_entity_NewHead -> parser:parser_entity_Identifier  [style=dotted]
+		markdown:markdown_entity_NewHead -> parser:parser_entity_Parse  [style=dotted]
+		markdown:markdown_entity_NewParagraph -> parser:parser_entity_Content  [style=dotted]
+		markdown:markdown_entity_NewParagraph -> parser:parser_entity_Parse  [style=dotted]
+		markdown:markdown_entity_OpenBlock -> parser:parser_entity_Kind  [style=dotted]
+		markdown:markdown_entity_Build -> reader:reader_Scan  [style=dotted]
+		markdown:markdown_entity_Continue -> reader:reader_entity_String  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_valueobject_AppendBlock  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_valueobject_Close  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_valueobject_Continue  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_valueobject_IsOpen  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_valueobject_NewTree  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_valueobject_ParentBlock  [style=dotted]
+		markdown:markdown_entity_Build -> markdown:markdown_valueobject_RootBlock  [style=dotted]
+		markdown:markdown_entity_Document_BlockTree -> markdown:markdown_valueobject_BlockTree  [style=dotted]
+		markdown:markdown_entity_Document_currentBlock -> markdown:markdown_valueobject_Block  [style=dotted]
+		markdown:markdown_entity_Head_BaseBlock -> markdown:markdown_valueobject_BaseBlock  [style=dotted]
+		markdown:markdown_entity_Paragraph_BaseBlock -> markdown:markdown_valueobject_BaseBlock  [style=dotted]
+		markdown:markdown_entity_Root_BaseBlock -> markdown:markdown_valueobject_BaseBlock  [style=dotted]
+		markdown:markdown_entity_line_Line -> reader:reader_entity_Line  [style=dotted]
+		example:example_main -> markdown:markdown_Parse  [style=dotted]
+		example:example_main -> markdown:markdown_entity_Step  [style=dotted]
+		example:example_main -> example:example_writeFiles  [style=dotted]
+		example:example_main -> markdown:markdown_valueobject_Kind  [style=dotted]
+		parser:parser_Find -> parser:parser_factory_NewParserCollection  [style=dotted]
+		parser:parser_entity_Line -> markdown:markdown_entity_line  [style=dotted]
+		parser:parser_entity_valid -> markdown:markdown_entity_FirstChar  [style=dotted]
+		parser:parser_entity_InitParserMap -> parser:parser_entity_Identifiers  [style=dotted]
+		parser:parser_entity_Parse -> parser:parser_entity_headerRaw  [style=dotted]
+		parser:parser_entity_Parse -> parser:parser_entity_level  [style=dotted]
+		parser:parser_entity_Parse -> parser:parser_entity_valid  [style=dotted]
+		parser:parser_entity_ParseResult -> parser:parser_entity_block  [style=dotted]
+		parser:parser_entity_Parser -> parser:parser_entity_heading  [style=dotted]
+		parser:parser_entity_Parser -> parser:parser_entity_paragraph  [style=dotted]
+		parser:parser_entity_Parser -> parser:parser_entity_root  [style=dotted]
+		parser:parser_entity_valid -> parser:parser_entity_Identifiers  [style=dotted]
+		parser:parser_entity_Parse -> reader:reader_entity_String  [style=dotted]
+		parser:parser_entity_ParserCollection_BlockParsers -> parser:parser_entity_Parser  [style=dotted]
+		parser:parser_entity_ParserCollection_InlineParsers -> parser:parser_entity_Parser  [style=dotted]
+		parser:parser_entity_ParserCollection_ParserMap -> parser:parser_entity_Parser  [style=dotted]
+		parser:parser_entity_ParserCollection_ParserMap -> parser:parser_valueobject_Identifier  [style=dotted]
+		parser:parser_factory_NewParserCollection -> parser:parser_entity_InitParserMap  [style=dotted]
+		parser:parser_factory_NewParserCollection -> parser:parser_entity_NewHeading  [style=dotted]
+		parser:parser_factory_NewParserCollection -> parser:parser_entity_NewParagraph  [style=dotted]
+		parser:parser_factory_NewParserCollection -> parser:parser_entity_NewRoot  [style=dotted]
+		reader:reader_Scan -> reader:reader_valueobject_Scan  [style=dotted]
+		reader:reader_valueobject_Scan -> markdown:markdown_entity_Build  [style=dotted]
+		reader:reader_valueobject_Scan -> reader:reader_factory_NewLine  [style=dotted]
+		markdown:markdown_service_Parse -> markdown:markdown_entity_Build  [style=dotted]
+		markdown:markdown_valueobject_AppendBlock -> datastructure:datastructure_AppendChild  [style=dotted]
+		markdown:markdown_valueobject_Block -> markdown:markdown_entity_Head  [style=dotted]
+		markdown:markdown_valueobject_Block -> markdown:markdown_entity_Paragraph  [style=dotted]
+		markdown:markdown_valueobject_Block -> markdown:markdown_entity_Root  [style=dotted]
+		markdown:markdown_valueobject_Kind -> parser:parser_entity_Kind  [style=dotted]
+		markdown:markdown_valueobject_AppendBlock -> markdown:markdown_valueobject_Node  [style=dotted]
+		markdown:markdown_valueobject_Block -> markdown:markdown_valueobject_BaseBlock  [style=dotted]
+		markdown:markdown_valueobject_NewTree -> markdown:markdown_valueobject_Node  [style=dotted]
+		markdown:markdown_valueobject_BaseBlock_TreeNode -> datastructure:datastructure_TreeNode  [style=dotted]
+		markdown:markdown_valueobject_BaseBlock_Parser -> parser:parser_entity_Parser  [style=dotted]
+		markdown:markdown_valueobject_BaseBlock_state -> markdown:markdown_valueobject_BlockState  [style=dotted]
+		markdown:markdown_valueobject_BlockTree_Tree -> datastructure:datastructure_Tree  [style=dotted]
+
+	label = "\n\ngithub.com/dddplayer/markdown\nDomain Model\n\nPowered by DDD Player";
+    fontsize=20;
+}

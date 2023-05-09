@@ -1,0 +1,103 @@
+digraph {
+    fontname="Helvetica, Arial, sans-serif"
+    node [fontname="Helvetica, Arial, sans-serif"]
+    edge [fontname="Helvetica, Arial, sans-serif"]
+    graph [style=dotted]
+
+    subgraph cluster_ddd_concept{
+        node [shape=rect]
+        edge [style=invis]
+
+        {rank=same node0 node1 node2 node3 node4 node5 node6 node7 node8 node9 node10 node11 node12}
+
+		node12 [label="Attribute" style=filled fillcolor="#f3f3f3ff"]		
+		node11 [label="Interface" style=filled fillcolor="#9fc5e8ff"]		
+		node10 [label="Function" style=filled fillcolor="#ead1dcff"]
+        node9 [label="General" style=filled fillcolor="#f4ccccff"]
+        node8 [label="Class" style=filled fillcolor="#b4a7d6ff"]
+        node7 [label="Factory" style=filled fillcolor="#cfe2f3ff"]
+        node6 [label="Event" style=filled fillcolor="#f6b26bff"]
+        node5 [label="Command" style=filled fillcolor="#a4c2f4ff"]
+        node4 [label="Service" style=filled fillcolor="#e69138ff"]
+        node3 [label="ValueObject" style=filled fillcolor="#a2c4c9ff"]
+        node2 [label="Entity" style=filled fillcolor="#ffe599ff"]
+        node1 [label="AggregateRoot" style=filled fillcolor="#ffd966ff"]
+        node0 [label="BoundedContext" style=dashed fillcolor="#ffffff00"]
+
+        node0 -> node1 -> node2 -> node3 -> node4 -> node5 -> node6 -> node7 -> node8 -> node9 -> node10 -> node11 -> node12
+    }
+
+    
+		subgraph cluster_markdown {
+	node [style=dotted shape=rect]
+
+	
+		markdown_service [label="services" style=filled fillcolor="#e69138ff"]
+		markdown_entity_Document [label="Document" style=filled fillcolor="#ffe599ff"]
+		markdown_entity_Head [label="Head" style=filled fillcolor="#ffe599ff"]
+		markdown_entity_Paragraph [label="Paragraph" style=filled fillcolor="#ffe599ff"]
+		markdown_entity_Root [label="Root" style=filled fillcolor="#ffe599ff"]
+		markdown_entity_line [label="line" style=filled fillcolor="#ffe599ff"]
+		markdown_valueobject_BaseBlock [label="BaseBlock" style=filled fillcolor="#a2c4c9ff"]
+		markdown_valueobject_BlockTree [label="BlockTree" style=filled fillcolor="#a2c4c9ff"]
+		markdown_general [label="generals" style=filled fillcolor="#f4ccccff"]
+		markdown_function [label="functions" style=filled fillcolor="#ead1dcff"]
+		markdown_valueobject_Block [label="Block" style=filled fillcolor="#9fc5e8ff"]
+
+	label = "markdown"
+    }
+		subgraph cluster_datastructure {
+	node [style=dotted shape=rect]
+
+	
+		datastructure_datastructure_Tree [label="Tree" style=filled fillcolor="#b4a7d6ff"]
+		datastructure_datastructure_TreeNode [label="TreeNode" style=filled fillcolor="#b4a7d6ff"]
+		datastructure_general [label="generals" style=filled fillcolor="#f4ccccff"]
+		datastructure_function [label="functions" style=filled fillcolor="#ead1dcff"]
+
+	label = "datastructure"
+    }
+		subgraph cluster_example {
+	node [style=dotted shape=rect]
+
+	
+		example_function [label="functions" style=filled fillcolor="#ead1dcff"]
+
+	label = "example"
+    }
+		subgraph cluster_parser {
+	node [style=dotted shape=rect]
+
+	
+		parser_factory [label="factories" style=filled fillcolor="#cfe2f3ff"]
+		parser_entity_ParserCollection [label="ParserCollection" style=filled fillcolor="#ffe599ff"]
+		parser_entity_block [label="block" style=filled fillcolor="#ffe599ff"]
+		parser_entity_heading [label="heading" style=filled fillcolor="#ffe599ff"]
+		parser_entity_paragraph [label="paragraph" style=filled fillcolor="#ffe599ff"]
+		parser_entity_root [label="root" style=filled fillcolor="#ffe599ff"]
+		parser_general [label="generals" style=filled fillcolor="#f4ccccff"]
+		parser_function [label="functions" style=filled fillcolor="#ead1dcff"]
+		parser_entity_Line [label="Line" style=filled fillcolor="#9fc5e8ff"]
+		parser_entity_ParseResult [label="ParseResult" style=filled fillcolor="#9fc5e8ff"]
+		parser_entity_Parser [label="Parser" style=filled fillcolor="#9fc5e8ff"]
+
+	label = "parser"
+    }
+		subgraph cluster_reader {
+	node [style=dotted shape=rect]
+
+	
+		reader_factory [label="factories" style=filled fillcolor="#cfe2f3ff"]
+		reader_entity_Line [label="Line" style=filled fillcolor="#ffe599ff"]
+		reader_valueobject_LineReader [label="LineReader" style=filled fillcolor="#a2c4c9ff"]
+		reader_general [label="generals" style=filled fillcolor="#f4ccccff"]
+		reader_function [label="functions" style=filled fillcolor="#ead1dcff"]
+
+	label = "reader"
+    }
+
+	
+
+	label = "\n\ngithub.com/dddplayer/markdown\nDomain Model\n\nPowered by DDD Player";
+    fontsize=20;
+}

@@ -1,7 +1,7 @@
 package valueobject
 
 import (
-	entity2 "github.com/dddplayer/markdown/datastructure/entity"
+	entity2 "github.com/dddplayer/markdown/datastructure"
 	"github.com/dddplayer/markdown/parser/entity"
 	"github.com/dddplayer/markdown/parser/valueobject"
 )
