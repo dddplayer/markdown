@@ -1,36 +1,40 @@
 digraph {
-    fontname="Helvetica, Arial, sans-serif"
-    node [fontname="Helvetica, Arial, sans-serif"]
-    edge [fontname="Helvetica, Arial, sans-serif"]
+	node [style=dotted shape=rect]
     graph [style=dotted]
 
     subgraph cluster_ddd_concept{
-        node [shape=rect]
-        edge [style=invis]
+		node [color=white]
 
-        {rank=same node0 node1 node2 node3 node4 node5 node6 node7 node8 node9 node10 node11 node12}
-
-		node12 [label="Attribute" style=filled fillcolor="#f3f3f3ff"]		
-		node11 [label="Interface" style=filled fillcolor="#9fc5e8ff"]		
-		node10 [label="Function" style=filled fillcolor="#ead1dcff"]
-        node9 [label="General" style=filled fillcolor="#f4ccccff"]
-        node8 [label="Class" style=filled fillcolor="#b4a7d6ff"]
-        node7 [label="Factory" style=filled fillcolor="#cfe2f3ff"]
-        node6 [label="Event" style=filled fillcolor="#f6b26bff"]
-        node5 [label="Command" style=filled fillcolor="#a4c2f4ff"]
-        node4 [label="Service" style=filled fillcolor="#e69138ff"]
-        node3 [label="ValueObject" style=filled fillcolor="#a2c4c9ff"]
-        node2 [label="Entity" style=filled fillcolor="#ffe599ff"]
-        node1 [label="AggregateRoot" style=filled fillcolor="#ffd966ff"]
-        node0 [label="BoundedContext" style=dashed fillcolor="#ffffff00"]
-
-        node0 -> node1 -> node2 -> node3 -> node4 -> node5 -> node6 -> node7 -> node8 -> node9 -> node10 -> node11 -> node12
-    }
+        ddd_concept [label=<
+        <table border="0" cellpadding="10">
+		<tr>
+			<td bgcolor="#ffffff00" rowspan="1" colspan="1">BoundedContext</td>
+			<td bgcolor="#ffd966ff" rowspan="1" colspan="1">AggregateRoot</td>
+			<td bgcolor="#ffe599ff" rowspan="1" colspan="1">Entity</td>
+			<td bgcolor="#a2c4c9ff" rowspan="1" colspan="1">ValueObject</td>
+			<td bgcolor="#e69138ff" rowspan="1" colspan="1">Service</td>
+		</tr>
+		<tr>
+			<td bgcolor="white" rowspan="1" colspan="1"></td>
+			<td bgcolor="#a4c2f4ff" rowspan="1" colspan="1">Command</td>
+			<td bgcolor="#f6b26bff" rowspan="1" colspan="1">Event</td>
+			<td bgcolor="#cfe2f3ff" rowspan="1" colspan="1">Factory</td>
+			<td bgcolor="#b4a7d6ff" rowspan="1" colspan="1">Class</td>
+			
+		</tr>
+		<tr>
+			<td bgcolor="white" rowspan="1" colspan="1"></td>
+			<td bgcolor="#f4ccccff" rowspan="1" colspan="1">General</td>
+			<td bgcolor="#ead1dcff" rowspan="1" colspan="1">Function</td>
+			<td bgcolor="#9fc5e8ff" rowspan="1" colspan="1">Interface</td>
+			<td bgcolor="#f3f3f3ff" rowspan="1" colspan="1">Attribute</td>
+		</tr>
+        </table>
+        > ]
+	}
 
     
 		subgraph cluster_markdown {
-	node [style=dotted shape=rect]
-
 	
 		markdown_service [label="services" style=filled fillcolor="#e69138ff"]
 		markdown_entity_Document [label="Document" style=filled fillcolor="#ffe599ff"]
@@ -47,29 +51,23 @@ digraph {
 	label = "markdown"
     }
 		subgraph cluster_datastructure {
-	node [style=dotted shape=rect]
-
 	
-		datastructure_datastructure_Tree [label="Tree" style=filled fillcolor="#b4a7d6ff"]
-		datastructure_datastructure_TreeNode [label="TreeNode" style=filled fillcolor="#b4a7d6ff"]
+		datastructure_Tree [label="Tree" style=filled fillcolor="#b4a7d6ff"]
+		datastructure_TreeNode [label="TreeNode" style=filled fillcolor="#b4a7d6ff"]
 		datastructure_general [label="generals" style=filled fillcolor="#f4ccccff"]
 		datastructure_function [label="functions" style=filled fillcolor="#ead1dcff"]
 
 	label = "datastructure"
     }
 		subgraph cluster_example {
-	node [style=dotted shape=rect]
-
 	
 		example_function [label="functions" style=filled fillcolor="#ead1dcff"]
 
 	label = "example"
     }
 		subgraph cluster_parser {
-	node [style=dotted shape=rect]
-
 	
-		parser_factory [label="factories" style=filled fillcolor="#cfe2f3ff"]
+		parser_factory [label="factorys" style=filled fillcolor="#cfe2f3ff"]
 		parser_entity_ParserCollection [label="ParserCollection" style=filled fillcolor="#ffe599ff"]
 		parser_entity_block [label="block" style=filled fillcolor="#ffe599ff"]
 		parser_entity_heading [label="heading" style=filled fillcolor="#ffe599ff"]
@@ -84,10 +82,8 @@ digraph {
 	label = "parser"
     }
 		subgraph cluster_reader {
-	node [style=dotted shape=rect]
-
 	
-		reader_factory [label="factories" style=filled fillcolor="#cfe2f3ff"]
+		reader_factory [label="factorys" style=filled fillcolor="#cfe2f3ff"]
 		reader_entity_Line [label="Line" style=filled fillcolor="#ffe599ff"]
 		reader_valueobject_LineReader [label="LineReader" style=filled fillcolor="#a2c4c9ff"]
 		reader_general [label="generals" style=filled fillcolor="#f4ccccff"]
@@ -97,6 +93,76 @@ digraph {
     }
 
 	
+		markdown_function -> markdown_service  [style=dotted arrowhead=normal label="" tooltip="markdown.function [/Users/sunwei/github/dddplayer/markdown/markdown.go:30] -> markdown.service [/Users/sunwei/github/dddplayer/markdown/service/parser.go:8]"]
+		datastructure_function -> markdown_entity_Document  [style=dashed arrowhead=normal label="" tooltip="datastructure.function [/Users/sunwei/github/dddplayer/markdown/datastructure/tree.go:66] -> markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:25]"]
+		datastructure_Tree -> datastructure_TreeNode  [style=dotted arrowhead=diamond label="" tooltip=""]
+		datastructure_Tree -> datastructure_function  [style=dotted arrowhead=normal label="" tooltip="datastructure.Tree [/Users/sunwei/github/dddplayer/markdown/datastructure/tree.go:54] -> datastructure.function [/Users/sunwei/github/dddplayer/markdown/datastructure/tree.go:57]"]
+		markdown_function -> datastructure_function  [style=dashed arrowhead=normal label="3" tooltip="markdown.function [/Users/sunwei/github/dddplayer/markdown/entity/head.go:23] -> datastructure.function [/Users/sunwei/github/dddplayer/markdown/datastructure/tree.go:15]"]
+		markdown_function -> parser_function  [style=dashed arrowhead=normal label="" tooltip="markdown.function [/Users/sunwei/github/dddplayer/markdown/entity/root.go:18] -> parser.function [/Users/sunwei/github/dddplayer/markdown/parser/parser.go:9]"]
+		markdown_function -> parser_entity_block  [style=dashed arrowhead=normal label="3" tooltip="markdown.function [/Users/sunwei/github/dddplayer/markdown/entity/head.go:26] -> parser.entity.block [/Users/sunwei/github/dddplayer/markdown/parser/entity/block.go:8]"]
+		markdown_function -> parser_entity_heading  [style=dashed arrowhead=normal label="2" tooltip="markdown.function [/Users/sunwei/github/dddplayer/markdown/entity/head.go:16] -> parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:25]"]
+		markdown_entity_line -> parser_entity_Line  [style=dashed arrowhead=onormal label="" tooltip="markdown.entity.line [/Users/sunwei/github/dddplayer/markdown/entity/line.go:7] -> parser.entity.Line [/Users/sunwei/github/dddplayer/markdown/parser/entity/type.go:5]"]
+		markdown_function -> parser_entity_paragraph  [style=dashed arrowhead=normal label="2" tooltip="markdown.function [/Users/sunwei/github/dddplayer/markdown/entity/head.go:16] -> parser.entity.paragraph [/Users/sunwei/github/dddplayer/markdown/parser/entity/paragraph.go:18]"]
+		markdown_function -> parser_entity_root  [style=dashed arrowhead=normal label="2" tooltip="markdown.function [/Users/sunwei/github/dddplayer/markdown/entity/head.go:16] -> parser.entity.root [/Users/sunwei/github/dddplayer/markdown/parser/entity/root.go:18]"]
+		markdown_entity_Head -> markdown_valueobject_Block  [style=dotted arrowhead=onormal label="" tooltip="markdown.entity.Head [/Users/sunwei/github/dddplayer/markdown/entity/head.go:9] -> markdown.valueobject.Block [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:9]"]
+		markdown_entity_Paragraph -> markdown_valueobject_Block  [style=dotted arrowhead=onormal label="" tooltip="markdown.entity.Paragraph [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:10] -> markdown.valueobject.Block [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:9]"]
+		markdown_entity_Root -> markdown_valueobject_Block  [style=dotted arrowhead=onormal label="" tooltip="markdown.entity.Root [/Users/sunwei/github/dddplayer/markdown/entity/root.go:10] -> markdown.valueobject.Block [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:9]"]
+		markdown_entity_Document -> datastructure_Tree  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:25] -> datastructure.Tree [/Users/sunwei/github/dddplayer/markdown/datastructure/tree.go:53]"]
+		markdown_entity_Document -> markdown_function  [style=dotted arrowhead=normal label="6" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:51] -> markdown.function [/Users/sunwei/github/dddplayer/markdown/entity/line.go:15]"]
+		markdown_entity_Document -> markdown_entity_Head  [style=dotted arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:51] -> markdown.entity.Head [/Users/sunwei/github/dddplayer/markdown/entity/head.go:34]"]
+		markdown_entity_Document -> markdown_entity_Paragraph  [style=dotted arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:51] -> markdown.entity.Paragraph [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:33]"]
+		markdown_entity_Document -> markdown_entity_line  [style=dotted arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:83] -> markdown.entity.line [/Users/sunwei/github/dddplayer/markdown/entity/line.go:11]"]
+		markdown_entity_Document -> example_function  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:32] -> example.function [/Users/sunwei/github/dddplayer/markdown/example/main.go:47]"]
+		markdown_entity_Document -> parser_function  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:83] -> parser.function [/Users/sunwei/github/dddplayer/markdown/parser/parser.go:9]"]
+		markdown_entity_Document -> parser_entity_heading  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:84] -> parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:17]"]
+		markdown_entity_Document -> parser_entity_paragraph  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:84] -> parser.entity.paragraph [/Users/sunwei/github/dddplayer/markdown/parser/entity/paragraph.go:25]"]
+		markdown_entity_Document -> parser_entity_root  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:84] -> parser.entity.root [/Users/sunwei/github/dddplayer/markdown/parser/entity/root.go:22]"]
+		markdown_entity_Document -> reader_function  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:44] -> reader.function [/Users/sunwei/github/dddplayer/markdown/reader/reader.go:8]"]
+		markdown_entity_Document -> markdown_valueobject_BaseBlock  [style=dotted arrowhead=normal label="5" tooltip="markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:75] -> markdown.valueobject.BaseBlock [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:40]"]
+		markdown_entity_Document -> markdown_valueobject_BlockTree  [style=dotted arrowhead=diamond label="2" tooltip=""]
+		markdown_entity_Document -> markdown_valueobject_Block  [style=dotted arrowhead=diamond label="" tooltip=""]
+		markdown_entity_Head -> markdown_valueobject_BaseBlock  [style=dotted arrowhead=diamond label="" tooltip=""]
+		markdown_entity_Paragraph -> markdown_function  [style=dotted arrowhead=normal label="" tooltip="markdown.entity.Paragraph [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:39] -> markdown.function [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:46]"]
+		markdown_entity_Paragraph -> parser_entity_block  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Paragraph [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:39] -> parser.entity.block [/Users/sunwei/github/dddplayer/markdown/parser/entity/block.go:8]"]
+		markdown_entity_Paragraph -> parser_entity_heading  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Paragraph [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:34] -> parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:25]"]
+		markdown_entity_Paragraph -> parser_entity_paragraph  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Paragraph [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:34] -> parser.entity.paragraph [/Users/sunwei/github/dddplayer/markdown/parser/entity/paragraph.go:18]"]
+		markdown_entity_Paragraph -> parser_entity_root  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Paragraph [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:34] -> parser.entity.root [/Users/sunwei/github/dddplayer/markdown/parser/entity/root.go:18]"]
+		markdown_entity_Paragraph -> reader_entity_Line  [style=dashed arrowhead=normal label="" tooltip="markdown.entity.Paragraph [/Users/sunwei/github/dddplayer/markdown/entity/paragraph.go:42] -> reader.entity.Line [/Users/sunwei/github/dddplayer/markdown/reader/entity/line.go:8]"]
+		markdown_entity_Paragraph -> markdown_valueobject_BaseBlock  [style=dotted arrowhead=diamond label="" tooltip=""]
+		markdown_entity_Root -> markdown_valueobject_BaseBlock  [style=dotted arrowhead=diamond label="" tooltip=""]
+		markdown_entity_line -> reader_entity_Line  [style=dashed arrowhead=diamond label="" tooltip=""]
+		example_function -> markdown_function  [style=dashed arrowhead=normal label="" tooltip="example.function [/Users/sunwei/github/dddplayer/markdown/example/main.go:27] -> markdown.function [/Users/sunwei/github/dddplayer/markdown/markdown.go:17]"]
+		example_function -> markdown_entity_Document  [style=dashed arrowhead=normal label="" tooltip="example.function [/Users/sunwei/github/dddplayer/markdown/example/main.go:32] -> markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:24]"]
+		example_function -> markdown_valueobject_BaseBlock  [style=dashed arrowhead=normal label="" tooltip="example.function [/Users/sunwei/github/dddplayer/markdown/example/main.go:48] -> markdown.valueobject.BaseBlock [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:53]"]
+		parser_function -> parser_factory  [style=dotted arrowhead=normal label="" tooltip="parser.function [/Users/sunwei/github/dddplayer/markdown/parser/parser.go:10] -> parser.factory [/Users/sunwei/github/dddplayer/markdown/parser/factory/factory.go:8]"]
+		parser_entity_block -> parser_entity_ParseResult  [style=dotted arrowhead=onormal label="" tooltip="parser.entity.block [/Users/sunwei/github/dddplayer/markdown/parser/entity/block.go:3] -> parser.entity.ParseResult [/Users/sunwei/github/dddplayer/markdown/parser/entity/type.go:10]"]
+		parser_entity_heading -> parser_entity_Parser  [style=dotted arrowhead=onormal label="" tooltip="parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:10] -> parser.entity.Parser [/Users/sunwei/github/dddplayer/markdown/parser/entity/type.go:15]"]
+		parser_entity_paragraph -> parser_entity_Parser  [style=dotted arrowhead=onormal label="" tooltip="parser.entity.paragraph [/Users/sunwei/github/dddplayer/markdown/parser/entity/paragraph.go:7] -> parser.entity.Parser [/Users/sunwei/github/dddplayer/markdown/parser/entity/type.go:15]"]
+		parser_entity_root -> parser_entity_Parser  [style=dotted arrowhead=onormal label="" tooltip="parser.entity.root [/Users/sunwei/github/dddplayer/markdown/parser/entity/root.go:7] -> parser.entity.Parser [/Users/sunwei/github/dddplayer/markdown/parser/entity/type.go:15]"]
+		parser_entity_ParserCollection -> parser_entity_Parser  [style=dotted arrowhead=diamond label="3" tooltip=""]
+		parser_entity_ParserCollection -> parser_entity_heading  [style=dotted arrowhead=normal label="" tooltip="parser.entity.ParserCollection [/Users/sunwei/github/dddplayer/markdown/parser/entity/parsercollection.go:17] -> parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:21]"]
+		parser_entity_ParserCollection -> parser_entity_paragraph  [style=dotted arrowhead=normal label="" tooltip="parser.entity.ParserCollection [/Users/sunwei/github/dddplayer/markdown/parser/entity/parsercollection.go:17] -> parser.entity.paragraph [/Users/sunwei/github/dddplayer/markdown/parser/entity/paragraph.go:14]"]
+		parser_entity_ParserCollection -> parser_entity_root  [style=dotted arrowhead=normal label="" tooltip="parser.entity.ParserCollection [/Users/sunwei/github/dddplayer/markdown/parser/entity/parsercollection.go:17] -> parser.entity.root [/Users/sunwei/github/dddplayer/markdown/parser/entity/root.go:14]"]
+		parser_entity_ParserCollection -> parser_general  [style=dotted arrowhead=diamond label="" tooltip=""]
+		parser_entity_heading -> markdown_entity_line  [style=dashed arrowhead=normal label="" tooltip="parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:37] -> markdown.entity.line [/Users/sunwei/github/dddplayer/markdown/entity/line.go:11]"]
+		parser_entity_heading -> parser_function  [style=dotted arrowhead=normal label="2" tooltip="parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:32] -> parser.function [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:40]"]
+		parser_entity_heading -> reader_entity_Line  [style=dashed arrowhead=normal label="" tooltip="parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:31] -> reader.entity.Line [/Users/sunwei/github/dddplayer/markdown/reader/entity/line.go:8]"]
+		parser_entity_paragraph -> reader_entity_Line  [style=dashed arrowhead=normal label="" tooltip="parser.entity.paragraph [/Users/sunwei/github/dddplayer/markdown/parser/entity/paragraph.go:21] -> reader.entity.Line [/Users/sunwei/github/dddplayer/markdown/reader/entity/line.go:8]"]
+		parser_factory -> parser_function  [style=dotted arrowhead=normal label="3" tooltip="parser.factory [/Users/sunwei/github/dddplayer/markdown/parser/factory/factory.go:12] -> parser.function [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:13]"]
+		parser_factory -> parser_entity_ParserCollection  [style=dotted arrowhead=normal label="" tooltip="parser.factory [/Users/sunwei/github/dddplayer/markdown/parser/factory/factory.go:17] -> parser.entity.ParserCollection [/Users/sunwei/github/dddplayer/markdown/parser/entity/parsercollection.go:11]"]
+		reader_function -> reader_valueobject_LineReader  [style=dotted arrowhead=normal label="" tooltip="reader.function [/Users/sunwei/github/dddplayer/markdown/reader/reader.go:10] -> reader.valueobject.LineReader [/Users/sunwei/github/dddplayer/markdown/reader/valueobject/linereader.go:17]"]
+		reader_valueobject_LineReader -> markdown_entity_Document  [style=dashed arrowhead=normal label="" tooltip="reader.valueobject.LineReader [/Users/sunwei/github/dddplayer/markdown/reader/valueobject/linereader.go:28] -> markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:44]"]
+		reader_valueobject_LineReader -> reader_factory  [style=dotted arrowhead=normal label="" tooltip="reader.valueobject.LineReader [/Users/sunwei/github/dddplayer/markdown/reader/valueobject/linereader.go:28] -> reader.factory [/Users/sunwei/github/dddplayer/markdown/reader/factory/factory.go:5]"]
+		markdown_service -> markdown_entity_Document  [style=dotted arrowhead=normal label="" tooltip="markdown.service [/Users/sunwei/github/dddplayer/markdown/service/parser.go:10] -> markdown.entity.Document [/Users/sunwei/github/dddplayer/markdown/entity/document.go:40]"]
+		markdown_valueobject_BaseBlock -> markdown_valueobject_Block  [style=dotted arrowhead=onormal label="" tooltip="markdown.valueobject.BaseBlock [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:34] -> markdown.valueobject.Block [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:9]"]
+		markdown_function -> markdown_valueobject_BaseBlock  [style=dotted arrowhead=normal label="" tooltip="markdown.function [/Users/sunwei/github/dddplayer/markdown/valueobject/tree.go:8] -> markdown.valueobject.BaseBlock [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:57]"]
+		markdown_valueobject_BaseBlock -> datastructure_TreeNode  [style=dashed arrowhead=diamond label="2" tooltip=""]
+		markdown_valueobject_BaseBlock -> parser_entity_Parser  [style=dashed arrowhead=diamond label="" tooltip=""]
+		markdown_valueobject_BaseBlock -> parser_entity_heading  [style=dashed arrowhead=normal label="" tooltip="markdown.valueobject.BaseBlock [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:54] -> parser.entity.heading [/Users/sunwei/github/dddplayer/markdown/parser/entity/heading.go:17]"]
+		markdown_valueobject_BaseBlock -> parser_entity_paragraph  [style=dashed arrowhead=normal label="" tooltip="markdown.valueobject.BaseBlock [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:54] -> parser.entity.paragraph [/Users/sunwei/github/dddplayer/markdown/parser/entity/paragraph.go:25]"]
+		markdown_valueobject_BaseBlock -> parser_entity_root  [style=dashed arrowhead=normal label="" tooltip="markdown.valueobject.BaseBlock [/Users/sunwei/github/dddplayer/markdown/valueobject/block.go:54] -> parser.entity.root [/Users/sunwei/github/dddplayer/markdown/parser/entity/root.go:22]"]
+		markdown_valueobject_BaseBlock -> markdown_general  [style=dotted arrowhead=diamond label="" tooltip=""]
+		markdown_valueobject_BlockTree -> datastructure_Tree  [style=dashed arrowhead=diamond label="" tooltip=""]
 
 	label = "\n\ngithub.com/dddplayer/markdown\nDomain Model\n\nPowered by DDD Player";
     fontsize=20;
