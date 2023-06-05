@@ -1,7 +1,7 @@
 package valueobject
 
 import (
-	"github.com/dddplayer/markdown/datastructure"
+	"github.com/dddplayer/markdown/pkg/datastructure"
 )
 
 func NewTree(b Block) *BlockTree {

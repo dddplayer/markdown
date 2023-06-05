@@ -1,14 +1,12 @@
-package valueobject
+package entity
 
 import (
 	"bufio"
-	"github.com/dddplayer/markdown/reader/entity"
-	"github.com/dddplayer/markdown/reader/factory"
 	"io"
 	"os"
 )
 
-type ScanFunc func(l *entity.Line) error
+type ScanFunc func(l *Line) error
 
 type LineReader struct {
 	F *os.File
@@ -25,7 +23,7 @@ func (l *LineReader) Scan(f ScanFunc) {
 		if err == io.EOF {
 			break
 		}
-		err = f(factory.NewLine(index, rawLine))
+		err = f(NewLine(index, rawLine))
 		if err != nil {
 			break
 		}

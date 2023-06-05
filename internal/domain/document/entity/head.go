@@ -1,9 +1,9 @@
 package entity
 
 import (
-	entity2 "github.com/dddplayer/markdown/datastructure"
-	"github.com/dddplayer/markdown/parser/entity"
-	"github.com/dddplayer/markdown/valueobject"
+	"github.com/dddplayer/markdown/internal/domain/document/valueobject"
+	"github.com/dddplayer/markdown/internal/domain/parser/entity"
+	entity2 "github.com/dddplayer/markdown/pkg/datastructure"
 )
 
 type Head struct {
@@ -12,7 +12,7 @@ type Head struct {
 	Level   int
 }
 
-func NewHead(p entity.Parser, l entity.Line) (*Head, error) {
+func NewHead(p entity.BlockParser, l entity.Line) (*Head, error) {
 	pr, err := p.Parse(l)
 	if err != nil {
 		return nil, err

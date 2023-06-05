@@ -3,10 +3,10 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"github.com/dddplayer/markdown"
-	"github.com/dddplayer/markdown/entity"
-	psvo "github.com/dddplayer/markdown/parser/valueobject"
-	mdvo "github.com/dddplayer/markdown/valueobject"
+	"github.com/dddplayer/markdown/internal/application"
+	entity2 "github.com/dddplayer/markdown/internal/domain/document/entity"
+	mdvo "github.com/dddplayer/markdown/internal/domain/document/valueobject"
+	psvo "github.com/dddplayer/markdown/internal/domain/parser/valueobject"
 	"golang.org/x/tools/txtar"
 	"os"
 	"path/filepath"
@@ -24,7 +24,7 @@ func main() {
 
 	mdPath := filepath.Join(dir, "test.md")
 
-	d, err := markdown.Parse(mdPath)
+	d, err := application.MDParse(mdPath)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -36,10 +36,10 @@ func main() {
 			case psvo.KindRoot:
 				fmt.Println("root")
 			case psvo.KindHead:
-				h := block.(*entity.Head)
+				h := block.(*entity2.Head)
 				fmt.Println(h.Level, h.Content)
 			case psvo.KindParagraph:
-				h := block.(*entity.Paragraph)
+				h := block.(*entity2.Paragraph)
 				fmt.Println(h.Content)
 			}
 			return nil

@@ -1,9 +1,8 @@
-package markdown
+package application
 
 import (
 	"errors"
-	"github.com/dddplayer/markdown/entity"
-	"github.com/dddplayer/markdown/service"
+	"github.com/dddplayer/markdown/internal/domain/document/entity"
 	"os"
 	"path/filepath"
 )
@@ -14,7 +13,7 @@ func check(e error) {
 	}
 }
 
-func Parse(path string) (*entity.Document, error) {
+func MDParse(path string) (*entity.Document, error) {
 	filename := filepath.Base(path)
 
 	ext := filepath.Ext(filename)
@@ -27,5 +26,5 @@ func Parse(path string) (*entity.Document, error) {
 
 	check(err)
 
-	return service.Parse(filename, f)
+	return Parse(filename, f)
 }

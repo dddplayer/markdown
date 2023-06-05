@@ -1,7 +1,7 @@
 package entity
 
 import (
-	"github.com/dddplayer/markdown/reader/entity"
+	"github.com/dddplayer/markdown/internal/domain/reader/entity"
 )
 
 type line struct {

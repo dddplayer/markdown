@@ -1,9 +1,9 @@
 package valueobject
 
 import (
-	entity2 "github.com/dddplayer/markdown/datastructure"
-	"github.com/dddplayer/markdown/parser/entity"
-	"github.com/dddplayer/markdown/parser/valueobject"
+	"github.com/dddplayer/markdown/internal/domain/parser/entity"
+	"github.com/dddplayer/markdown/internal/domain/parser/valueobject"
+	entity2 "github.com/dddplayer/markdown/pkg/datastructure"
 )
 
 type Block interface {
@@ -34,7 +34,7 @@ const (
 type BaseBlock struct {
 	*entity2.TreeNode
 	state  BlockState
-	Parser entity.Parser
+	Parser entity.BlockParser
 }
 
 func (b *BaseBlock) AppendBlock(block Block) {

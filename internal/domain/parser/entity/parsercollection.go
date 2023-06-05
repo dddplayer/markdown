@@ -1,15 +1,17 @@
 package entity
 
-import "github.com/dddplayer/markdown/parser/valueobject"
+import (
+	"github.com/dddplayer/markdown/internal/domain/parser/valueobject"
+)
 
 type ParserCollection struct {
-	BlockParsers  []Parser
-	InlineParsers []Parser
-	ParserMap     map[valueobject.Identifier]Parser
+	BlockParsers  []BlockParser
+	InlineParsers []BlockParser
+	ParserMap     map[valueobject.Identifier]BlockParser
 }
 
 func (m *ParserCollection) InitParserMap() {
-	var ps []Parser
+	var ps []BlockParser
 	ps = append(ps, m.BlockParsers...)
 	ps = append(ps, m.InlineParsers...)
 

@@ -2,28 +2,28 @@ package entity
 
 import (
 	"fmt"
-	entity2 "github.com/dddplayer/markdown/datastructure"
-	"github.com/dddplayer/markdown/parser"
-	psvo "github.com/dddplayer/markdown/parser/valueobject"
-	"github.com/dddplayer/markdown/reader"
-	"github.com/dddplayer/markdown/reader/entity"
-	mdvo "github.com/dddplayer/markdown/valueobject"
+	"github.com/dddplayer/markdown/internal/domain/document/valueobject"
+	parser "github.com/dddplayer/markdown/internal/domain/parser/entity"
+	psvo "github.com/dddplayer/markdown/internal/domain/parser/valueobject"
+	"github.com/dddplayer/markdown/internal/domain/reader/entity"
+	entity2 "github.com/dddplayer/markdown/pkg/datastructure"
 	"os"
 )
 
 type Document struct {
-	*mdvo.BlockTree
+	*valueobject.BlockTree
 	Name         string
-	currentBlock mdvo.Block
+	currentBlock valueobject.Block
+	BlockParser  *parser.Parser
 }
 
-type StepFunc func(block mdvo.Block) error
+type StepFunc func(block valueobject.Block) error
 type StepIn StepFunc
 type StepOut StepFunc
 
 func (d *Document) Step(in StepIn, out StepOut) {
 	d.Walk(func(v any, ws entity2.WalkState) entity2.WalkStatus {
-		b := v.(mdvo.Block)
+		b := v.(valueobject.Block)
 		if ws == entity2.WalkIn {
 			if err := in(b); err != nil {
 				return entity2.WalkStop
@@ -38,10 +38,12 @@ func (d *Document) Step(in StepIn, out StepOut) {
 }
 
 func (d *Document) Build(f *os.File) error {
-	d.BlockTree = mdvo.NewTree(d.openRootBlock())
+	d.BlockTree = valueobject.NewTree(d.openRootBlock())
 
 	parent := d.RootBlock()
-	reader.Scan(f, func(l *entity.Line) error {
+
+	r := &entity.Reader{}
+	r.Scan(f, func(l *entity.Line) error {
 		if l == nil {
 			panic("not support blank line in demo yet")
 		}
@@ -50,9 +52,9 @@ func (d *Document) Build(f *os.File) error {
 		if d.currentBlock != nil {
 			state := d.currentBlock.Continue(NewLine(l))
 			switch state {
-			case mdvo.Children:
+			case valueobject.Children:
 				panic("not implemented yet")
-			case mdvo.Close:
+			case valueobject.Close:
 				if err := d.currentBlock.Close(); err != nil {
 					return err
 				}
@@ -63,7 +65,7 @@ func (d *Document) Build(f *os.File) error {
 					d.currentBlock = nil
 				}
 				goto retry
-			case mdvo.Continue:
+			case valueobject.Continue:
 				fmt.Println("continue")
 			}
 		}
@@ -78,9 +80,9 @@ func (d *Document) Build(f *os.File) error {
 	return nil
 }
 
-func (d *Document) OpenBlock(l *entity.Line) (mdvo.Block, error) {
+func (d *Document) OpenBlock(l *entity.Line) (valueobject.Block, error) {
 	line := NewLine(l)
-	p := parser.Find(line.FirstChar())
+	p := d.BlockParser.Find(line.FirstChar())
 	switch p.Kind() {
 	case psvo.KindHead:
 		return NewHead(p, line)
@@ -91,7 +93,7 @@ func (d *Document) OpenBlock(l *entity.Line) (mdvo.Block, error) {
 	return nil, nil
 }
 
-func (d *Document) openRootBlock() mdvo.Block {
+func (d *Document) openRootBlock() valueobject.Block {
 	r, _ := NewRoot()
 	return r
 }
